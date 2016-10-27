@@ -27,10 +27,10 @@ services:
     image: mariadb
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: sqlsidecar
-      MYSQL_DATABASE: sqlsidecar
-      MYSQL_USER: sqlsidecar
-      MYSQL_PASSWORD: sqlsidecar
+      MYSQL_ROOT_PASSWORD: somethingMadeUpForMYSQL
+      MYSQL_DATABASE: machineru
+      MYSQL_USER: machineru
+      MYSQL_PASSWORD: somethingMadeUpForMYSQL
     ports:
       - 3306
   statsd:

@@ -10,6 +10,7 @@ const envLoader = require('node-env-file')
 const insert = require('gulp-insert')
 const flowtype = require('gulp-flowtype')
 const removeFlow = require('rollup-plugin-flow')
+const newer = require('gulp-newer')
 
 envLoader(`./env.plain`)
 
@@ -27,7 +28,8 @@ const handleErrors = function (err) {
 }
 
 function lint () {
-  const stream = gulp.src(['./src/**/*.js', 'gulpfile.js'])
+  const stream = gulp.src(['./src/**/*.js'])
+  .pipe(newer('./_build/'))
   .pipe(eslint()).pipe(eslint.format())
   if (EXIT_ON_ERRORS) stream.pipe(eslint.failAfterError())
   else stream.on('error', handleErrors)
@@ -44,14 +46,16 @@ gulp.task('flow', gulp.parallel(flow))
 function botRollup () {
   return gulp.src(['./src/**/*.js'])
   .pipe(rollup({
-    entry: './src/index.js',
+    entry: [ './src/index.js', './src/discord/index.js' ],
     sourceMap: true,
     plugins: rollupPlugins
   }))
+  .pipe(newer('./_build/'))
   .pipe(insert.prepend(nodePrepend))
   .on('error', handleErrors)
   .pipe(gulp.dest('./_build/'))
 }
+gulp.task('botRollup', botRollup)
 
 const all_tasks = gulp.parallel([
   botRollup, lint
@@ -65,7 +69,7 @@ gulp.task('watch', gulp.series(all_tasks, () => {
     script: './_build/index.js',
     ext: '.js',
     watch: [
-      'src/**/*.js'
+      'src/**/*.js', 'env.plain'
     ],
     tasks: ['botRollup', 'lint']
   })

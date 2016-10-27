@@ -1,0 +1,40 @@
+version: '2'
+services:
+  machinEru:
+    image: machinEru:latest
+    command: node _build
+    depends_on:
+      - redis
+      - mysql
+      - statsd
+    links:
+      - redis
+      - mysql
+      - statsd
+    env_file: ./env.plain
+    environment:
+      REDIS_URIS: redis:6379
+      MYSQL_URIS: mysql:3306
+      LOG_LEVEL: debug
+      STATSD_URIS: statsd:8125
+    restart: always
+  redis:
+    image: redis:alpine
+    restart: always
+    ports:
+      - 6379
+  mysql:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: sqlsidecar
+      MYSQL_DATABASE: sqlsidecar
+      MYSQL_USER: sqlsidecar
+      MYSQL_PASSWORD: sqlsidecar
+    ports:
+      - 3306
+  statsd:
+    image: kamon/grafana_graphite
+    ports:
+      - 80
+      - 8125/udp

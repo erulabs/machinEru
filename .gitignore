@@ -1,0 +1,14 @@
+node_modules/
+.secret
+_build/
+_db/
+npm-debug.log
+.DS_Store
+*.plain
+*.tmp
+*.swp
+.floo
+.flooignore
+.vagrant
+.release
+inf/test/secrets/*

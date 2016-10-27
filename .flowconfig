@@ -1,0 +1,12 @@
+[ignore]
+.*/_build/.*
+.*/secrets/.*
+.*/docs/.*
+.*/.git/.*
+.*/bin/.*
+.*/gulpfile.js
+.*/*.flow
+.*/node_modules/bcryptjs/src/bower.json
+
+[options]
+suppress_comment= \\(.\\|\n\\)*\\$FlowIssue

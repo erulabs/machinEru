@@ -1,0 +1,36 @@
+{
+  "name": "machinEru",
+  "version": "1.0.0",
+  "description": "Eru's personal chatbot",
+  "main": "index.js",
+  "repository": {
+    "url": "git@github.com:erulabs/machinEru",
+    "type": "git"
+  },
+  "author": "Seandon Mooy",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^10.0.0"
+  },
+  "devDependencies": {
+    "node-env-file": "^0.1.8",
+    "babel-eslint": "^7.1.0",
+    "depcheck": "^0.6.4",
+    "eslint": "^3.8.1",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-flowtype": "^2.25.0",
+    "eslint-plugin-promise": "^3.3.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "flow-bin": "^0.33.0",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-eslint": "^3.0.1",
+    "gulp-flowtype": "^1.0.0",
+    "gulp-insert": "^0.5.0",
+    "gulp-nodemon": "github:erulabs/gulp-nodemon",
+    "gulp-rollup": "^2.5.1",
+    "gulp-util": "^3.0.7",
+    "nsp": "^2.6.2",
+    "rollup-plugin-flow": "^1.0.1",
+    "rollup-plugin-replace": "^1.1.1"
+  }
+}

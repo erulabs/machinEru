@@ -1,0 +1,28 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "standard",
+    "plugin:flowtype/recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "modules": true
+    }
+  },
+  "rules": {
+    "arrow-parens": 0,
+    "camelcase": 0,
+    "new-cap": 0,
+    "flowtype/require-valid-file-annotation": [
+        2,
+        "always"
+    ]
+  },
+  "plugins": [
+    "flowtype"
+  ],
+  "settings": {
+  },
+  "globals": {
+  }
+}

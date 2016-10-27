@@ -38,3 +38,15 @@ services:
     ports:
       - 80
       - 8125/udp
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - mysql
+    ports:
+      - 3020:80
+    links:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: machineru
+      PMA_PASSWORD: somethingMadeUpForMYSQL

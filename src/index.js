@@ -1,27 +1,12 @@
 // @flow
 
-const Sequelize = require('sequelize')
-
+const emojione = require('emojione')
 import {
-  DISCORD_TOKEN,
-  MYSQL_SERVERS, MYSQL_USER, MYSQL_PASS, MYSQL_DB
+  DISCORD_TOKEN
 } from './config.js'
-import { sampleArray } from './helpers.js'
-const mysql_target = sampleArray(MYSQL_SERVERS)
+import events from './events.js'
 
-const sequelize = new Sequelize(MYSQL_DB, MYSQL_USER, MYSQL_PASS, {
-  host: mysql_target.host,
-  port: mysql_target.port,
-  dialect: 'mysql',
-  pool: { max: 5, min: 0, idle: 10000 }
-})
-
-sequelize.sync().then(() => {
-  console.log('Connection has been established successfully.')
-}).catch(err => {
-  console.log('Unable to connect to the database:', err)
-  process.exit(1)
-})
+import Message from './models/Message.js'
 
 let wrapper
 if (DISCORD_TOKEN) {
@@ -31,13 +16,16 @@ if (DISCORD_TOKEN) {
   wrapper = require('./mock')
 }
 
-if (wrapper) {
+events.on('ready', () => {
   wrapper.bot.on('ready', () => {
     console.log('Connected to', wrapper.name)
   })
 
-  // create an event listener for messages
+    // create an event listener for messages
   wrapper.bot.on('message', message => {
-    console.log('got message', message)
+    Message.create({
+      author: message.author.username,
+      content: emojione.toShort(message.content)
+    })
   })
-}
+})

@@ -10,8 +10,10 @@
   "author": "Seandon Mooy",
   "license": "MIT",
   "dependencies": {
-    "mysql": "^2.11.1",
-    "sequelize": "^3.24.6"
+    "discord.js": "^10.0.0",
+    "emojione": "^2.2.6",
+    "mysql2": "^1.1.1",
+    "sequelize": "^4.0.0-2"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.0",
@@ -34,8 +36,5 @@
     "nsp": "^2.6.2",
     "rollup-plugin-flow": "^1.0.1",
     "rollup-plugin-replace": "^1.1.1"
-  },
-  "peerDependencies": {
-    "discord.js": "^10.0.0"
   }
 }

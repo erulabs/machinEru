@@ -1,16 +1,13 @@
 #!/bin/bash
 
 if ! [ -x "$(command -v jq)" ]; then
-  echo "Please install 'jq' - brew install jq, apt install jq..."
-  exit 1
-fi
-if ! [ -x "$(command -v yarn)" ]; then
-  echo "Please install 'yarn' - sudo npm install -g yarn"
-  exit 1
-fi
-if ! [ -f "package.json" ]; then
-  echo "This script needs to be run from the root of the repository"
-  exit 1
+  echo "Please install 'jq' - brew install jq, apt install jq..."; exit 1
+elif ! [ -x "$(command -v yarn)" ]; then
+  echo "Please install 'yarn' - sudo npm install -g yarn"; exit 1
+elif ! [ -f "package.json" ]; then
+  echo "This script needs to be run from the root of the repository"; exit 1
+elif ! [ -f "env.plain" ]; then
+  echo "You're missing an env.plain file"; exit 1
 fi
 if ! [ -d "node_modules" ]; then
   yarn
